@@ -1,38 +1,52 @@
-import { NextResponse } from "next/server";
+import { NextResponse} from "next/server";
 import OpenAI from "openai";
 
-
 const systemPrompt = `
-You are a flashcard creator, you take in text and create multiple flashcards from it. Make sure to create exactly 10 flashcards.
-Both front and back should be one sentence long.
-You should return in the following JSON format:
+You are a flashcard creator. Your task is to generate concise and effective flashcards based on the given topic or content. Follow these guidelines:
+
+1. Create clear and concise questions for the front of the flashcard.
+2. Provide brief, accurate answers for the back of the flashcard.
+3. Focus on key concepts, definitions, and important facts.
+4. Use simple language to ensure clarity and ease of understanding.
+5. Avoid overly complex or lengthy explanations.
+6. Create a mix of different question types (e.g., definitions, fill-in-the-blank, true/false).
+7. Ensure that each flashcard covers a single, distinct piece of information.
+8. Tailor the difficulty level to the user's specified preferences.
+9. When appropriate, include mnemonics or memory aids to assist in retention.
+10. Format the output as a JSON array of flashcard objects, each containing 'question' and 'answer' fields.
+11. Only generate 10 flashcards.
+
+Remember, the goal is to create flashcards that facilitate quick review and effective memorization.
+
+Return the following in JSON format.
 {
-  "flashcards":[
-    {
-      "front": "Front of the card",
-      "back": "Back of the card"
-    }
-  ]
+    "flashcards": [
+        {
+            "question": str,
+            "answer": str
+        }
+    ] 
 }
-` 
-
-
+`
 export async function POST(req) {
     const openai = new OpenAI()
     const data = await req.text()
-  
+
     const completion = await openai.chat.completions.create({
-      messages: [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: data },
-      ],
-      model: 'gpt-4o',
-      response_format: { type: 'json_object' },
+        model: "gpt-4o-mini",
+        messages: [
+            {
+                role: "system",
+                content: systemPrompt
+            },
+            {
+                role: "user",
+                content: data
+            }
+        ],
+        response_format: { type: "json_object" }  
     })
-  
-    // Parse the JSON response from the OpenAI API
+
     const flashcards = JSON.parse(completion.choices[0].message.content)
-  
-    // Return the flashcards as a JSON response
     return NextResponse.json(flashcards.flashcards)
-  }
+}
