@@ -54,14 +54,14 @@ export default function Home() {
   return (
     <Container maxWidth="100v">
       <Head>
-        <title>Flashcard SaaS</title>
+        <title>Programming Flashcards</title>
         <meta name="description" content="Create flashcards from your text" />
       </Head>
 
       <GradientAppBar position="static">
         <Toolbar>
           <Typography variant="h5" style={{ flexGrow: 1, fontWeight: 'bold', letterSpacing: '0.1em' }}>
-            Flashcard SaaS
+          Programming Flashcards
           </Typography>
           <SignedOut>
             <Button sx={{ color: '#FFF', mx: 1, fontWeight: '500' }} href="/sign-in">Login</Button>
@@ -80,10 +80,10 @@ export default function Home() {
         }}
       >
         <Typography variant="h2" sx={{ fontWeight: '600', color: '#4a148c' }} gutterBottom>
-          Welcome to Flashcard SaaS
+          Learn Programming Language with Flashcards!
         </Typography>
         <Typography variant="h5" sx={{ fontWeight: '400', color: '#6a1b9a', mb: 3 }}>
-          The easiest way to create flashcards from your text
+        The easiest way to create personalized flashcards for mastering programming concepts.
         </Typography>
         <Link href="/generate" passHref>
           <Button variant="contained" color="primary" sx={{
@@ -96,42 +96,43 @@ export default function Home() {
       </Box>
 
       <Box sx={{ my: 6 }}>
-        <Typography variant="h4" sx={{ fontWeight: '600', textAlign: 'center', mb: 4, color: '#4a148c' }}>
-          Features
+  <Typography variant="h4" sx={{ fontWeight: '600', textAlign: 'center', mb: 4, color: '#4a148c' }}>
+    Features
+  </Typography>
+  <Grid container spacing={4}>
+    <Grid item xs={12} md={4}>
+      <FeatureBox>
+        <Typography variant="h6" gutterBottom sx={{ fontWeight: '500', color: '#4a148c' }}>
+          Effortless Text Input
         </Typography>
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={4}>
-            <FeatureBox>
-              <Typography variant="h6" gutterBottom sx={{ fontWeight: '500', color: '#4a148c' }}>
-                Easy Text Input
-              </Typography>
-              <Typography sx={{ color: '#6a1b9a' }}>
-                Simply paste your text and we&apos;ll extract the flashcards for you.
-              </Typography>
-            </FeatureBox>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <FeatureBox>
-              <Typography variant="h6" gutterBottom sx={{ fontWeight: '500', color: '#4a148c' }}>
-                Smart Flashcards
-              </Typography>
-              <Typography sx={{ color: '#6a1b9a' }}>
-                Our AI will break down your text into concise flashcards, perfect for studying on the go.
-              </Typography>
-            </FeatureBox>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <FeatureBox>
-              <Typography variant="h6" gutterBottom sx={{ fontWeight: '500', color: '#4a148c' }}>
-                Accessible Anywhere
-              </Typography>
-              <Typography sx={{ color: '#6a1b9a' }}>
-                Access your flashcards from anywhere, on any device.
-              </Typography>
-            </FeatureBox>
-          </Grid>
-        </Grid>
-      </Box>
+        <Typography sx={{ color: '#6a1b9a' }}>
+          Paste your programming notes or code snippets, and we'll instantly generate relevant flashcards to help reinforce key concepts.
+        </Typography>
+      </FeatureBox>
+    </Grid>
+    <Grid item xs={12} md={4}>
+      <FeatureBox>
+        <Typography variant="h6" gutterBottom sx={{ fontWeight: '500', color: '#4a148c' }}>
+          AI-Generated Flashcards
+        </Typography>
+        <Typography sx={{ color: '#6a1b9a' }}>
+          Our AI intelligently analyzes your input to create flashcards that highlight essential programming functions and methods, perfect for mastering coding languages.
+        </Typography>
+      </FeatureBox>
+    </Grid>
+    <Grid item xs={12} md={4}>
+      <FeatureBox>
+        <Typography variant="h6" gutterBottom sx={{ fontWeight: '500', color: '#4a148c' }}>
+          Study Anywhere, Anytime
+        </Typography>
+        <Typography sx={{ color: '#6a1b9a' }}>
+          Your flashcards are available on any device, making it easy to review programming concepts whether you're at home or on the move.
+        </Typography>
+      </FeatureBox>
+    </Grid>
+  </Grid>
+</Box>
+
 
       <Box sx={{ my: 6, textAlign: 'center' }}>
         <Typography variant="h4" sx={{ fontWeight: '600', mb: 4, color: '#4a148c' }}>
