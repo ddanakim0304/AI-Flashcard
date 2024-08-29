@@ -8,30 +8,33 @@ import Head from "next/head";
 export default function Home() {
 
   const handleSubmit = async () => {
-    const checkoutSession = await fetch('/api/checkout_session', {
-      method: 'POST',
-      headers: {
-        origin: 'http://localhost:3000',
-      }, 
-    })
+    try {
+      const checkoutSession = await fetch('/api/checkout_session', {
+        method: 'POST',
+        headers: {
+          origin: 'http://localhost:3000',
+        }, 
+      });
 
-    const checkoutSessionJson = await checkoutSession.json()
+      const checkoutSessionJson = await checkoutSession.json();
 
-    if(checkoutSession.statusCode === 500){
-      console.error(checkoutSession.message)
-    return
+      if (checkoutSession.status !== 200) {
+        console.error(checkoutSessionJson.message);
+        return;
+      }
+
+      const stripe = await getStripe();
+      const { error } = await stripe.redirectToCheckout({
+        sessionId: checkoutSessionJson.id
+      });
+
+      if (error) {
+        console.error(error.message);
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
     }
-  
-    const stripe = await getStripe()
-    const {error} = await stripe.redirectToCheckout({
-      sessionId: checkoutSessionJson.id
-    })
-
-    if (error){
-      console.warn(error.message)
-    }
-  }
-
+  };
   return (
     <Container maxWidth="100v">
       <Head>
