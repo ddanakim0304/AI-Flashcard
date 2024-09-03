@@ -9,14 +9,16 @@ import {
 } from "@mui/material";
 import Link from "next/link";
 
+
 export default function SignUpPage() {
+  
   return (
     <Container maxWidth="100vw" disableGutters>
-      <AppBar position="static" sx={{ backgroundColor: "3f51b5" }}>
+      <AppBar position="static" sx={{ backgroundColor: "#6a0dad" }}>
         <Toolbar>
-          <Typography variant="h6" style={{ flexGrow: 1 }}>
+          <Typography variant="h5" style={{ flexGrow: 1, fontWeight: 'bold', letterSpacing: '0.1em' }}>
             <Button color="inherit" href="/">
-              Flashcard SaaS
+            Programming Flashcards
             </Button>
           </Typography>
           <Button color="inherit">
